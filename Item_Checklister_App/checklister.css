@@ -69,7 +69,7 @@ body {
     background-color: #eee;
 }
 
-.form-container button {
+.form-container .btn {
     padding: 10px 15px;
     text-transform: uppercase;
     border: 1px solid #ccc;
@@ -85,9 +85,107 @@ body {
 
 .form-container button:hover {
     cursor: pointer;
-    background-color: var(--brown);
 }
+
 
 button.add-btn {
     flex: 0.1;
+}
+
+button.btn.clear-btn {
+    padding: 10px 50px;
+    background-color: transparent;
+    transition: 300ms;
+}
+
+button.add-btn:hover,
+button.clear-btn:hover  {
+    cursor: pointer;
+    background-color: var(--brown);
+}
+
+.list-container ul {
+    margin: 15px 0;
+    list-style: none;
+    max-height: 34vh;
+    overflow-y: scroll;
+}
+
+.todo-item {
+    background-color: rgb(23, 29, 29);
+    border-radius: 2px;
+    border: 1px solid rgb(243, 170, 61);
+    padding: 10px;
+    margin: 5px 0;
+    text-align: left;
+    text-transform: capitalize;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todo-item > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-item button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    font-size: 13px;
+    text-align: justify;
+    transition: 1s transform;
+}
+
+.actionBtns {
+    margin-left: 15px;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.actionBtns .complete {
+    margin-left: 5px;
+}
+
+.actionBtns .complete:hover {
+    color: rgb(35, 213, 35);
+    transform: scale(1.3);
+}
+
+.actionBtns .delete {
+    margin-left: 10px;
+    color: rgb(255, 217, 0);
+}
+
+.actionBtns .delete:hover {
+    color:  rgb(252, 17, 17);
+    transform: scale(1.3);
+}
+
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #222;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #555;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
 }
