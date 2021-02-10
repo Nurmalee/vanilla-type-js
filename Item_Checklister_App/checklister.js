@@ -74,13 +74,46 @@ todoItemCompleteBtn.forEach(btn => {
     btn.addEventListener('click', () => completeTodoItem(btn))
 })
 
+todoItemDeleteBtn.forEach(btn => {
+    btn.addEventListener('click', () => deleteTodoItem(btn))
+})
+
 const completeTodoItem = (item) => {
     const currentListItem = item.parentElement.parentElement
     currentListItem.classList.toggle('completed')
 }
 
+const deleteTodoItem = (item) => {
+    const currentListItem = item.parentElement.parentElement
+    fadeOut(currentListItem)
+    resetDefaultSettings()
+    indicatorContext('item deleted')
+}
+
 const countListItem = () => {
     listItemCount.innerHTML = list.children.length
+}
+
+const fadeOut = (target) => {
+    const todoItems = document.querySelectorAll(".todo-item");
+    target.classList.add("faded")
+    setTimeout(() => {
+        if(target === list){
+            todoItems.forEach(todoItem => {
+                target.removeChild(todoItem)
+            })
+            // target.innerHTML = ""
+            listContainer.classList.add('remove-container')
+        } else {
+            list.removeChild(target)
+            // target.remove()
+            if(list.children.length === 0){
+                listContainer.classList.add('remove-container')
+            }
+        }
+        // target === todoList ? (target.innerHTML = "") : target.remove()
+        countListItem()
+    }, 1000)
 }
 
 function listItemHTMLMarkUp (dynamicItem, id) {
