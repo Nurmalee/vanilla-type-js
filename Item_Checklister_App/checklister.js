@@ -70,6 +70,15 @@ checklisterForm.addEventListener('submit', (e) => {
     countListItem()
 })
 
+todoItemCompleteBtn.forEach(btn => {
+    btn.addEventListener('click', () => completeTodoItem(btn))
+})
+
+const completeTodoItem = (item) => {
+    const currentListItem = item.parentElement.parentElement
+    currentListItem.classList.toggle('completed')
+}
+
 const countListItem = () => {
     listItemCount.innerHTML = list.children.length
 }
