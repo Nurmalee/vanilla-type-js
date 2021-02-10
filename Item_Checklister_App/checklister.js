@@ -12,9 +12,10 @@ const addBtn = document.querySelector(".add-btn");
 
 window.addEventListener('load', () => {
     countListItem()
-    setInterval(() => {
-        addBtn.classList.toggle('brown-bg')
-    }, 1000)
+    // setInterval(() => {
+    //     addBtn.classList.toggle('brown-bg')
+    // }, 1000)
+    listContainer.classList.remove('remove-container')
 })
 
 
@@ -48,16 +49,7 @@ const defaultList = [
 const defaultChecklist = defaultList.map(listItem => {
     const {id, taskName} = listItem 
     return (
-        `<li class="todo-item" data-id='${id}'>
-            <div>
-                <button class="edit"> <i class="fas fa-pencil-alt"></i> </button>
-                <p> ${taskName} </p>
-            </div> 
-            <div> 
-                <button class="complete"> <i class="fas fa-check"></i> </button>
-                <button class="delete"> <i class="fas fa-eraser"></i> </button>
-            </div>
-        </li>`
+        listItemHTMLMarkUp(taskName, id)
     )
 })
 
@@ -68,18 +60,9 @@ checklisterForm.addEventListener('submit', (e) => {
     
     const id = new Date().getTime().toString()
     if(formInputField.value){
-        const newListItem = 
-        `<li class="todo-item" data-id='${id}'>
-            <div>
-                <button class="edit"> <i class="fas fa-pencil-alt"></i> </button>
-                <p> ${formInputField.value} </p>
-            </div> 
-            <div> 
-                <button class="complete"> <i class="fas fa-check"></i> </button>
-                <button class="delete"> <i class="fas fa-eraser"></i> </button>
-            </div>
-        </li>`
+        const newListItem = listItemHTMLMarkUp(formInputField.value, id)
         list.insertAdjacentHTML("afterbegin", newListItem)
+        listContainer.classList.remove('remove-container')
     }
   
     formInputField.value = ''
@@ -89,4 +72,19 @@ checklisterForm.addEventListener('submit', (e) => {
 
 const countListItem = () => {
     listItemCount.innerHTML = list.children.length
+}
+
+function listItemHTMLMarkUp (dynamicItem, id) {
+    return (
+        `<li class="todo-item" data-id="${id}">
+            <div>
+                <button class="edit" onClick={editTodoItem(this)}> <i class="fas fa-pencil-alt"></i> </button>
+                <p> ${dynamicItem} </p>
+            </div> 
+            <div class="actionBtns"> 
+                <button class="complete" onClick={completeTodoItem(this)}> <i class="fas fa-check"></i> </button>
+                <button class="delete" onClick={deleteTodoItem(this)}> <i class="fas fa-eraser"></i> </button>
+            </div>
+        </li>`
+    )
 }
