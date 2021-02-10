@@ -62,6 +62,9 @@ checklisterForm.addEventListener('submit', (e) => {
         const newListItem = listItemHTMLMarkUp(formInputField.value, id)
         list.insertAdjacentHTML("afterbegin", newListItem)
         listContainer.classList.remove('remove-container')
+        indicatorContext('item added')
+    } else {
+        indicatorContext("can't process empty value")
     }
   
     formInputField.value = ''
@@ -82,6 +85,7 @@ clearListBtn.addEventListener('click', () => {
     if(alert.includes('yes') || alert.includes('YES')){
         fadeOut(list)
     }
+    indicatorContext('list cleared')
 })
 
 const completeTodoItem = (item) => {
@@ -92,7 +96,6 @@ const completeTodoItem = (item) => {
 const deleteTodoItem = (item) => {
     const currentListItem = item.parentElement.parentElement
     fadeOut(currentListItem)
-    resetDefaultSettings()
     indicatorContext('item deleted')
 }
 
@@ -115,6 +118,7 @@ const fadeOut = (target) => {
             // target.remove()
             if(list.children.length === 0){
                 listContainer.classList.add('remove-container')
+                indicatorContext('list cleared')
             }
         }
         // target === todoList ? (target.innerHTML = "") : target.remove()
@@ -135,4 +139,13 @@ function listItemHTMLMarkUp (dynamicItem, id) {
             </div>
         </li>`
     )
+}
+
+const indicatorContext = (displayText) => {
+    indicator.classList.remove('hide-indicator')
+    indicator.textContent = displayText
+    setTimeout(() => {
+        indicator.textContent = ''
+        indicator.classList.add('hide-indicator')
+    }, 1000)
 }

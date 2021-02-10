@@ -69,6 +69,16 @@ body {
     background-color: #eee;
 }
 
+#indicator {
+    font-size: 12px;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 2px;
+    width: fit-content;
+    border-radius: 2px;
+    margin: 0 auto;
+}
+
 .form-container .btn {
     padding: 10px 15px;
     text-transform: uppercase;
@@ -122,6 +132,7 @@ button.clear-btn:hover  {
     overflow-y: scroll;
     /* background-color: rgba(70, 70, 70, 0.33); */
 }
+
 
 .todo-item {
     background-color: rgba(23, 29, 29, 0.6);
