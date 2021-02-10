@@ -17,6 +17,9 @@ window.addEventListener('load', () => {
     listContainer.classList.remove('remove-container')
 })
 
+let editedItem
+let isEditing = false
+
 const defaultList = [
     {
         id: 1,
@@ -58,17 +61,20 @@ checklisterForm.addEventListener('submit', (e) => {
     list.classList.remove("faded")
     
     const id = new Date().getTime().toString()
-    if(formInputField.value){
+    if(formInputField.value  && !isEditing){
         const newListItem = listItemHTMLMarkUp(formInputField.value, id)
         list.insertAdjacentHTML("afterbegin", newListItem)
         listContainer.classList.remove('remove-container')
         indicatorContext('item added')
+    } else if (formInputField.value && isEditing) {
+        editedItem.innerText = formInputField.value
+        isEditing = false
+        indicatorContext('item edited') 
     } else {
         indicatorContext("can't process empty value")
     }
   
-    formInputField.value = ''
-    formInputField.focus()
+    resetDefaultSettings()
     countListItem()
 })
 
@@ -96,7 +102,17 @@ const completeTodoItem = (item) => {
 const deleteTodoItem = (item) => {
     const currentListItem = item.parentElement.parentElement
     fadeOut(currentListItem)
+    resetDefaultSettings()
     indicatorContext('item deleted')
+}
+
+const editTodoItem = (item) => {
+    const currentListItem = item.nextElementSibling
+    formInputField.value = currentListItem.innerText
+    formInputField.focus()
+    editedItem = currentListItem
+    isEditing = true
+    addBtn.innerText = 'edit'
 }
 
 const countListItem = () => {
@@ -139,6 +155,13 @@ function listItemHTMLMarkUp (dynamicItem, id) {
             </div>
         </li>`
     )
+}
+
+const resetDefaultSettings = () => {
+    addBtn.innerText = 'add'
+    formInputField.value = ''
+    formInputField.focus()
+    isEditing = false
 }
 
 const indicatorContext = (displayText) => {
