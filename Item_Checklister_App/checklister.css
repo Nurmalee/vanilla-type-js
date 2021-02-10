@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
+:root {
+    --brown: rgb(174, 21, 21);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -19,4 +26,68 @@ body {
     border-radius: 4px;
     box-shadow: 0 0 15px black;
     position: relative;
+}
+
+.checklister-container > h1 {
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+    margin: 20px 0;
+    margin-bottom: 15px;
+    padding: 0 20px;
+    text-transform: capitalize;
+    /* position:sticky;
+    top: 3px; */
+}
+
+.form-container {
+    padding: 10px 25px;
+    max-height: 60vh;
+}
+
+.checklister-form {
+    display: flex;
+    align-items: center;
+    border-radius: 1px;
+    background-color: transparent;
+}
+
+.checklister-form > input {
+    flex: 0.9;
+    padding: 10px 15px;
+    width: 100%;
+    margin-right: 3px;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 1px;
+    outline: none;
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.checklister-form > input:focus {
+    background-color: #eee;
+}
+
+.form-container button {
+    padding: 10px 15px;
+    text-transform: uppercase;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 1px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.form-container button:hover {
+    cursor: pointer;
+    background-color: var(--brown);
+}
+
+button.add-btn {
+    flex: 0.1;
 }
