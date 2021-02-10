@@ -6,11 +6,17 @@ const clearListBtn = document.querySelectorAll(".clear-btn");
 const todoItemCompleteBtn = document.querySelectorAll(".complete");
 const todoItemDeleteBtn = document.querySelectorAll(".delete");
 const todoItemEditBtn = document.querySelectorAll(".edit");
+const listItemCount = document.querySelector("#list-item-count");
 const addBtn = document.querySelector(".add-btn");
 
-setInterval(() => {
-    addBtn.classList.toggle('brown-bg')
-}, 1000)
+
+window.addEventListener('load', () => {
+    countListItem()
+    setInterval(() => {
+        addBtn.classList.toggle('brown-bg')
+    }, 1000)
+})
+
 
 const defaultList = [
     {
@@ -56,3 +62,31 @@ const defaultChecklist = defaultList.map(listItem => {
 })
 
 list.innerHTML = defaultChecklist.join('')
+
+checklisterForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    
+    const id = new Date().getTime().toString()
+    if(formInputField.value){
+        const newListItem = 
+        `<li class="todo-item" data-id='${id}'>
+            <div>
+                <button class="edit"> <i class="fas fa-pencil-alt"></i> </button>
+                <p> ${formInputField.value} </p>
+            </div> 
+            <div> 
+                <button class="complete"> <i class="fas fa-check"></i> </button>
+                <button class="delete"> <i class="fas fa-eraser"></i> </button>
+            </div>
+        </li>`
+        list.insertAdjacentHTML("afterbegin", newListItem)
+    }
+  
+    formInputField.value = ''
+    formInputField.focus()
+    countListItem()
+})
+
+const countListItem = () => {
+    listItemCount.innerHTML = list.children.length
+}

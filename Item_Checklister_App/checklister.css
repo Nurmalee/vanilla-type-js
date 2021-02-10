@@ -119,6 +119,7 @@ button.clear-btn:hover  {
     list-style: none;
     max-height: 34vh;
     overflow-y: scroll;
+    /* background-color: rgba(70, 70, 70, 0.33); */
 }
 
 .todo-item {
