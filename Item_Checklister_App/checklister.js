@@ -2,13 +2,12 @@ const checklisterForm = document.querySelector(".checklister-form");
 const formInputField = document.querySelector("input");
 const list = document.querySelector("ul");
 const listContainer = document.querySelector(".list-container");
-const clearListBtn = document.querySelectorAll(".clear-btn");
+const clearListBtn = document.querySelectorAll(".btn")[1];
 const todoItemCompleteBtn = document.querySelectorAll(".complete");
 const todoItemDeleteBtn = document.querySelectorAll(".delete");
 const todoItemEditBtn = document.querySelectorAll(".edit");
 const listItemCount = document.querySelector("#list-item-count");
 const addBtn = document.querySelector(".add-btn");
-
 
 window.addEventListener('load', () => {
     countListItem()
@@ -17,7 +16,6 @@ window.addEventListener('load', () => {
     // }, 1000)
     listContainer.classList.remove('remove-container')
 })
-
 
 const defaultList = [
     {
@@ -57,6 +55,7 @@ list.innerHTML = defaultChecklist.join('')
 
 checklisterForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    list.classList.remove("faded")
     
     const id = new Date().getTime().toString()
     if(formInputField.value){
@@ -76,6 +75,13 @@ todoItemCompleteBtn.forEach(btn => {
 
 todoItemDeleteBtn.forEach(btn => {
     btn.addEventListener('click', () => deleteTodoItem(btn))
+})
+
+clearListBtn.addEventListener('click', () => {
+    const alert = prompt('ARE YOU SURE YOU WANT TO DELETE THE LIST? IF YES, TYPE "yes"')
+    if(alert.includes('yes') || alert.includes('YES')){
+        fadeOut(list)
+    }
 })
 
 const completeTodoItem = (item) => {

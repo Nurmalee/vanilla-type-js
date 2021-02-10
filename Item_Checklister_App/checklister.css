@@ -189,6 +189,10 @@ button.delete:hover {
     transition: 2000ms;
 }
 
+.hide-indicator {
+    visibility: hidden;
+}
+
 .completed {
     text-decoration: line-through;
     opacity: 0.5;
