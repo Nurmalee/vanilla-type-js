@@ -11,10 +11,11 @@ const addBtn = document.querySelector(".add-btn");
 
 window.addEventListener('load', () => {
     countListItem()
+    formInputField.focus()
     // setInterval(() => {
     //     addBtn.classList.toggle('brown-bg')
     // }, 1000)
-    listContainer.classList.remove('remove-container')
+    // listContainer.classList.remove('remove-container')
 })
 
 let editedItem
@@ -39,11 +40,11 @@ const defaultList = [
     },
     {
         id: 5,
-        taskName: 'create a website landing page with context API'
+        taskName: 'Test The Implementation Of React Router'
     },
     {
         id: 6,
-        taskName: 'create a website landing page with context API'
+        taskName: 'recreate my original youtube clone with react'
     }
 ]
 
@@ -54,7 +55,7 @@ const defaultChecklist = defaultList.map(listItem => {
     )
 })
 
-list.innerHTML = defaultChecklist.join('')
+// list.innerHTML = defaultChecklist.join('')
 
 checklisterForm.addEventListener('submit', (e) => {
     e.preventDefault()
